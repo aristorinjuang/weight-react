@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import Layout from './Layout';
 
 let container: any;
@@ -18,9 +18,9 @@ afterEach(() => {
 it('should have title, description, and copyright', () => {
   act(() => {
     ReactDOM.createRoot(container).render(
-      <BrowserRouter>
+      <MemoryRouter initialEntries={[{ pathname: '/' }]}>
         <Layout />
-      </BrowserRouter>
+      </MemoryRouter>
     );
   });
 

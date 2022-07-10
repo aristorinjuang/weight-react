@@ -107,6 +107,10 @@ it('should be able to create and then redirect to the home', async () => {
   fireEvent.change(maxElement, {target: {value: '3'}});
   fireEvent.change(minElement, {target: {value: '2'}});
 
+  const difference = container.querySelector('input[name="difference"]').getAttribute('value');
+
+  expect(difference).toBe('1');
+
   mockedAxios.post.mockResolvedValue({
     data: {
       date: new Date('2022-05-22'),

@@ -63,6 +63,7 @@ it('should contain tables with creating and delete buttons', async () => {
   expect(container.innerHTML).toContain('1')
 
   window.confirm = jest.fn().mockImplementation(() => true)
+
   mockedAxios.delete.mockResolvedValue({})
   mockedAxios.get.mockResolvedValue({
     data: {
