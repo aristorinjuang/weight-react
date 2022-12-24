@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom/client';
-import { fireEvent, getByText } from '@testing-library/react';
 import axios from 'axios';
 import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router-dom';

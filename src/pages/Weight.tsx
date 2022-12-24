@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
-import NotFound from './NotFound';
+import NotFound from '../atoms/typography/NotFound';
+import Form from '../organisms/Form';
 
-const Weight = () => {
+export default function Weight() {
   const location = useLocation();
   const navigate = useNavigate();
   const [disabled, setDisabled] = useState(false);
@@ -67,52 +68,15 @@ const Weight = () => {
   if (location.pathname !== '/create' && max === 0 && min === 0) {
     return <NotFound />
   }
-  return (
-    <form className="my-2 grid grid-cols-6 gap-1 sm:gap-2">
-      <p className="my-2 col-span-2">
-        <input
-          disabled={disabled}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeDate(new Date(e.target.value))}
-          defaultValue={moment(date).format('YYYY-MM-DD')}
-          name="date"
-          type="date"
-          placeholder="Date"
-          className={`h-8 w-full rounded-full text-xs ${disabled ? 'bg-gray-300' : ''}`}
-        />
-      </p>
-      <p className="my-2">
-        <input
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeMax(Number(e.target.value))}
-          defaultValue={max}
-          name="max"
-          type="number"
-          placeholder="Max"
-          className="h-8 w-full rounded-full text-xs"
-        />
-      </p>
-      <p className="my-2">
-        <input
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeMin(Number(e.target.value))}
-          defaultValue={min}
-          name="min"
-          type="number"
-          placeholder="Min"
-          className="h-8 w-full rounded-full text-xs"
-        />
-      </p>
-      <p className="my-2">
-        <input disabled name="difference" type="number" value={difference} className="h-8 w-full rounded-full text-xs bg-gray-300" />
-      </p>
-      <p className="my-2 text-center">
-        <button
-          onClick={(e: React.MouseEvent) => disabled ? updateWeight(e) : createWeight(e)}
-          className="h-8 w-full bg-green-500 hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 active:bg-green-700 py-2 rounded-full font-semibold text-white text-xs"
-        >
-          Submit
-        </button>
-      </p>
-    </form>
-  )
+  return <Form
+    date={date}
+    max={max}
+    min={min}
+    difference={difference}
+    disabled={disabled}
+    changeDateAction={changeDate}
+    changeMaxAction={changeMax}
+    changeMinAction={changeMin}
+    submitAction={disabled ? updateWeight : createWeight}
+  />
 }
-
-export default Weight;

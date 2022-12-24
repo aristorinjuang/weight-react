@@ -1,9 +1,7 @@
-import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from './Layout';
-import Weight from './Weight';
-import Weights from './Weights';
-import './App.css';
+import Layout from './templates/Layout';
+import Weight from './pages/Weight';
+import Weights from './pages/Weights';
 
 const App = () => {
   return (
